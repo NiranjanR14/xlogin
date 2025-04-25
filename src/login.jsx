@@ -5,7 +5,8 @@ const LoginPage = () => {
   const [password, setPassword] = useState("");
   const [message, setMessage] = useState("");
 
-  const handleSubmit = () => {
+  const handleSubmit = (event) => {
+    event.preventDefault(); // Prevent form submission from reloading the page
     if (username === "user" && password === "password") {
       setMessage("Welcome, user");
     } else {
@@ -33,50 +34,52 @@ const LoginPage = () => {
           width: "300px",
         }}
       >
-        <h1 style={{ textAlign: "center", marginBottom: "20px" }}>Login Page</h1>
-        <div style={{ marginBottom: "15px" }}>
-          <label htmlFor="username" style={{ display: "block", marginBottom: "5px" }}>
-            Username
-          </label>
-          <input
-            type="text"
-            id="username"
-            value={username}
-            onChange={(e) => setUsername(e.target.value)}
-            placeholder="Enter username"
-            style={{ width: "100%", padding: "8px", boxSizing: "border-box" }}
-          />
-        </div>
-        <div style={{ marginBottom: "15px" }}>
-          <label htmlFor="password" style={{ display: "block", marginBottom: "5px" }}>
-            Password
-          </label>
-          <input
-            type="password"
-            id="password"
-            value={password}
-            onChange={(e) => setPassword(e.target.value)}
-            placeholder="Enter password"
-            style={{ width: "100%", padding: "8px", boxSizing: "border-box" }}
-          />
-        </div>
-        <div>
-          <button
-            onClick={handleSubmit}
-            // disabled={!username || !password}
-            style={{
-              width: "100%",
-              padding: "10px",
-              backgroundColor: "#007BFF",
-              color: "white",
-              border: "none",
-              borderRadius: "4px",
-              //cursor: !username || !password ? "not-allowed" : "pointer",
-            }}
-          >
-            Submit
-          </button>
-        </div>
+        <form onSubmit={handleSubmit}>
+          <h1 style={{ textAlign: "center", marginBottom: "20px" }}>Login Page</h1>
+          <div style={{ marginBottom: "15px" }}>
+            <label htmlFor="username" style={{ display: "block", marginBottom: "5px" }}>
+              Username
+            </label>
+            <input
+              type="text"
+              id="username"
+              value={username}
+              onChange={(e) => setUsername(e.target.value)}
+              placeholder="Enter username"
+              style={{ width: "100%", padding: "8px", boxSizing: "border-box" }}
+            />
+          </div>
+          <div style={{ marginBottom: "15px" }}>
+            <label htmlFor="password" style={{ display: "block", marginBottom: "5px" }}>
+              Password
+            </label>
+            <input
+              type="password"
+              id="password"
+              value={password}
+              onChange={(e) => setPassword(e.target.value)}
+              placeholder="Enter password"
+              style={{ width: "100%", padding: "8px", boxSizing: "border-box" }}
+            />
+          </div>
+          <div>
+            <button
+              type="submit"
+              disabled={!username || !password}
+              style={{
+                width: "100%",
+                padding: "10px",
+                backgroundColor: "#007BFF",
+                color: "white",
+                border: "none",
+                borderRadius: "4px",
+                //cursor: !username || !password ? "not-allowed" : "pointer",
+              }}
+            >
+              Submit
+            </button>
+          </div>
+        </form>
         {message && (
           <div
             style={{
