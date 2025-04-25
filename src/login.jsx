@@ -65,7 +65,7 @@ const LoginPage = () => {
           <div>
             <button
               type="submit"
-              disabled={!username || !password}
+              //disabled={!username || !password}
               style={{
                 width: "100%",
                 padding: "10px",
